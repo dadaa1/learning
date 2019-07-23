@@ -1,0 +1,11 @@
+redux 
+react-redux
+react-router
+react-router-redux
+
+redux-saga
+dva
+
+webpack 
+eslint
+
