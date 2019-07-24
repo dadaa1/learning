@@ -2,6 +2,7 @@ class MyPromise {
   constructor(func) {
     this.list = [];
     setTimeout(() => {
+      // 在下一个事件循环里，执行此函数，否则list队列里没有任何函数
       func(this.resolve.bind(this), this.reject.bind(this));
     }, 0);
   }
