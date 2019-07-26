@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      #app::before {
+        content: '';
+        display: block;
+        padding-bottom: 50%;
+      }
+      #app {
+        transform: translate(0, -50%);
+        top: 50%;
+        background-color: blue;
+        position: relative;
+      }
+      #app div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 利用html css 编写样式，
+      div垂直body居中、div内的text垂直居中，
+      div高度等于body宽度的一半
+     -->
+    <div id="app">
+      <div>text</div>
+    </div>
+    <script>
+      window.onresize = () => {
+        console.log(getComputedStyle(document.body).width);
+        const app = document.getElementById('app');
+        console.log(getComputedStyle(app).height);
+      };
+    </script>
+  </body>
+</html>
