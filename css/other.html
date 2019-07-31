@@ -12,22 +12,23 @@
         padding: 0;
         margin: 0;
       }
-      #app::before {
-        content: '';
-        display: block;
-        padding-bottom: 50%;
-      }
-      #app {
-        transform: translate(0, -50%);
+
+      #app1 {
         top: 50%;
+        transform: translate(0, -50%);
         background-color: blue;
         position: relative;
+        padding: 25% 0;
+        height: 0;
+        text-align: center;
       }
-      #app div {
-        position: absolute;
+      #app {
+        position: relative;
+        text-align: center;
+        line-height: 50vw;
         top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        height: 50vw;
+        background-color: blue;
       }
     </style>
   </head>
@@ -37,13 +38,14 @@
       div高度等于body宽度的一半
      -->
     <div id="app">
-      <div>text</div>
+      text
     </div>
     <script>
       window.onresize = () => {
-        console.log(getComputedStyle(document.body).width);
+        const p = parseFloat(getComputedStyle(document.body).width);
         const app = document.getElementById('app');
-        console.log(getComputedStyle(app).height);
+        const c = parseFloat(getComputedStyle(app).paddingBottom);
+        console.log(p === 4 * c, p, c);
       };
     </script>
   </body>
