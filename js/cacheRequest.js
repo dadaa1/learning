@@ -3,9 +3,9 @@
 // 调用格式为request(url, successCallback, failCallback)）
 // 比如调用方代码如下：
 
-cacheRequest('/user', data => {
-  console.log('我是从A请求的user, 数据为' + data);
-});
+// cacheRequest('/user', (data) => {
+//   console.log(`我是从A请求的user, 数据为${data}`);
+// });
 
 const cacheRequest = (() => {
   const cache = {};
@@ -15,11 +15,11 @@ const cacheRequest = (() => {
       return;
     }
     fetch(url)
-      .then(data => {
+      .then((data) => {
         cache[url] = data;
         successCallback(data);
       })
-      .catch(e => {
+      .catch((e) => {
         failCallback(e);
       });
   };
@@ -27,17 +27,13 @@ const cacheRequest = (() => {
 
 // 另外一个题目
 function add(a) {
-  return b => {
-    return a + b;
-  };
+  return b => a + b;
 }
 function sub(a) {
-  return b => {
-    return b - a;
-  };
+  return b => b - a;
 }
 function createNumberFunction(num) {
-  return func => {
+  return (func) => {
     if (func) {
       return func(num);
     }
@@ -47,5 +43,5 @@ function createNumberFunction(num) {
 const one = createNumberFunction(1);
 const two = createNumberFunction(2);
 
-console.log(one(add(two()))); //3
-console.log(two(sub(one()))); //1
+console.log(one(add(two()))); // 3
+console.log(two(sub(one()))); // 1

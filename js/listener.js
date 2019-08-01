@@ -1,6 +1,6 @@
-//观察者模式
-let salesOffice = {};
-salesOffice.client = []; //缓存列表，存放订阅者的回掉函数
+// 观察者模式
+const salesOffice = {};
+salesOffice.client = []; // 缓存列表，存放订阅者的回掉函数
 
 salesOffice.listen = function(fn) {
   this.client.push(fn);
@@ -12,22 +12,22 @@ salesOffice.trigger = function() {
   }
 };
 
-salesOffice.listen(function(price, squaremeter) {
+salesOffice.listen((price, squaremeter) => {
   console.log('价格是：', price);
   console.log('面积是：', squaremeter);
 });
 
-salesOffice.listen(function(price, squaremeter) {
+salesOffice.listen((price, squaremeter) => {
   console.log('价格是：', price);
   console.log('面积是：', squaremeter);
 });
 
 salesOffice.trigger('1000', '2000');
 
-//升级版
-let hhh = {
+// 升级版
+const hhh = {
   list: {},
-  on: function(key, fn) {
+  on(key, fn) {
     if (typeof fn !== 'function') {
       console.log('第二个参数不是函数');
       return;
@@ -49,20 +49,20 @@ let hhh = {
     };
     this.on(key, func);
   },
-  fire: function() {
+  fire() {
     const list = [...arguments];
-    let key = list[0];
+    const key = list[0];
     if (!this.list[key]) {
       return;
     }
     for (let i = 0, fn; (fn = this.list[key][i++]); ) {
-      let arg = list;
+      const arg = list;
       arg.shift();
       fn.apply(this, arg);
     }
   },
-  unfire: function(key, fn) {
-    let l = this.list[key].indexOf(fn);
+  unfire(key, fn) {
+    const l = this.list[key].indexOf(fn);
     if (!this.list[key] || l < 0) {
       return;
     }
@@ -88,4 +88,4 @@ console.log('___________________');
 hhh.fire('lll', 'dadaa');
 hhh.fire('hhh', 'hhhhh');
 
-//把订阅的函数存起来，等到需要触发的时候触发，本质上还是回调函数。
+// 把订阅的函数存起来，等到需要触发的时候触发，本质上还是回调函数。

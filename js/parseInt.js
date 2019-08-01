@@ -14,7 +14,7 @@ function parseInt(str) {
 
 // test
 const arr = ['+1024word', '    -1024word', '0000word1024', '10word24'];
-arr.forEach(item => {
+arr.forEach((item) => {
   const ps = parseInt(item);
   console.log(ps, typeof ps);
   console.log('------------------------------------');

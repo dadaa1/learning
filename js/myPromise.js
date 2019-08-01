@@ -6,6 +6,7 @@ class MyPromise {
       func(this.resolve.bind(this), this.reject.bind(this));
     }, 0);
   }
+
   resolve(data) {
     let msg = data;
     while (this.list.length) {
@@ -25,6 +26,7 @@ class MyPromise {
       }
     }
   }
+
   reject(error) {
     while (this.list.length) {
       const catchFunc = this.list.shift();
@@ -35,49 +37,54 @@ class MyPromise {
     }
     throw error;
   }
+
   then(cb) {
     if (this._isFunction(cb)) {
       this.list.push(cb);
     }
     return this;
   }
+
   catch(cb) {
     if (this._isFunction(cb)) {
       this.list.push({
-        errorCallback: cb
+        errorCallback: cb,
       });
     }
     return this;
   }
+
   _isFunction(func) {
     return typeof func === 'function';
   }
+
   _isErrorCallBack(func) {
-    return typeof func == 'object' && this._isFunction(func.errorCallback);
+    return typeof func === 'object' && this._isFunction(func.errorCallback);
   }
+
   _isMyPromise(msg) {
     return typeof msg === 'object' && msg.constructor === MyPromise;
   }
 }
-MyPromise.all = function(fns) {
+MyPromise.all = function (fns) {
   const len = fns.length;
   let reslen = 0;
   const result = [];
   return new MyPromise((res, rej) => {
     fns.forEach((el, i) => {
-      el.then(data => {
-        reslen++;
+      el.then((data) => {
+        reslen += 1;
         result[i] = data;
         if (len === reslen) {
           res(result);
         }
-      }).catch(e => {
+      }).catch((e) => {
         rej(e);
       });
     });
   });
 };
-MyPromise.race = function() {};
+MyPromise.race = function () {};
 
 // test code
 // new MyPromise((res, rej) => {
@@ -105,34 +112,34 @@ MyPromise.race = function() {};
 //   .then(() => {
 //     console.log('3');
 //   });
-let a = new MyPromise(function(res, rej) {
-  setTimeout(function() {
+const a = new MyPromise((res, rej) => {
+  setTimeout(() => {
     console.log('第一');
     res('第二');
   }, 1000);
 });
-a.then(function(value) {
+a.then((value) => {
   console.log('第二:', value);
   return '第三';
 })
-  .catch(function(err) {
+  .catch((err) => {
     console.log('错误：', err);
   })
-  .then(function(value) {
+  .then((value) => {
     console.log('第三：', value);
     return '第四';
   })
-  .then(function(value) {
-    return new MyPromise(function(res, rej) {
-      setTimeout(function() {
+  .then(
+    value => new MyPromise((res, rej) => {
+      setTimeout(() => {
         console.log('新第一:', value);
         res('新第二');
       }, 1000);
-    });
-  })
-  .then(function(value) {
+    }),
+  )
+  .then((value) => {
     console.log('新第二:', value);
   })
-  .catch(function(err) {
+  .catch((err) => {
     console.log('hhhhhhhhh:', err);
   });

@@ -19,7 +19,7 @@
 function createCurry(funct) {
   return (...arg) => {
     const list = [];
-    const func = (...arg) => {
+    const func = () => {
       const len = arg.length;
       list.push(...arg);
       if (len === 0 || len > 1) {

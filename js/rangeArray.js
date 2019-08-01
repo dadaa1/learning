@@ -7,7 +7,7 @@ function rangeArray(array) {
       preItem = String(item);
     }
     if (array[index - 1] + 1 === item) {
-      preItem = pre[pre.length - 1].split('->')[0] + '->' + item;
+      preItem = `${pre[pre.length - 1].split('->')[0]}->${item}`;
       pre.pop();
     } else {
       preItem = String(item);

@@ -44,14 +44,13 @@ console.log(b);
 // multiplyAdd(3, 4) // 返回 13
 
 function composeFunctions(...arg) {
-  return (...newFuncArg) => {
-    return arg.reduce((str, item, index) => {
+  return (...newFuncArg) =>
+    arg.reduce((str, item, index) => {
       if (!index) {
         return item.apply(null, newFuncArg);
       }
       return item.call(null, str);
     }, '');
-  };
 }
 
 const sss = x => x * x;
@@ -92,9 +91,7 @@ function machine(str) {
     execute: () => {
       arr.reduce((promise, item) => {
         if (item.key === 'waitFirst' || item.key === 'wait') {
-          return promise.then(() => {
-            return wait(item.value);
-          });
+          return promise.then(() => wait(item.value));
         }
         if (item.key === 'start' || item.key === 'do') {
           return promise.then(() => {
@@ -106,7 +103,7 @@ function machine(str) {
       }, Promise.resolve());
     },
     do: _str => {
-      arr.push({ key: 'do', value: str + '' + _str });
+      arr.push({ key: 'do', value: `${str}${_str}` });
       return obj;
     },
     wait: time => {

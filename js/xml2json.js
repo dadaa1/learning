@@ -22,10 +22,10 @@ function json2xml(json) {
   Object.entries(json).forEach(([k, v]) => {
     let content = v;
     if (Array.isArray(content)) {
-      let xmlArr = content
-        .map(item => {
+      const xmlArr = content
+        .map((item) => {
           const value = typeof item === 'string' ? item : json2xml(item);
-          return '<' + k + '>' + value + '</' + k + '>';
+          return `<${k}>${value}</${k}>`;
         })
         .join('');
       xml += xmlArr;
@@ -34,7 +34,7 @@ function json2xml(json) {
     if (typeof v === 'object' && !Array.isArray(content)) {
       content = json2xml(v);
     }
-    xml += '<' + k + '>' + content + '</' + k + '>';
+    xml += `<${k}>${content}</${k}>`;
   });
   return xml;
 }
@@ -42,22 +42,22 @@ function json2xml(json) {
 const json = {
   a: 1,
   b: {
-    c: 2
+    c: 2,
   },
   c: [
     {
       h: '一',
-      j: '二'
+      j: '二',
     },
     {
       h: '一',
-      j: '二'
+      j: '二',
     },
     {
       h: 1,
-      j: '二'
-    }
-  ]
+      j: '二',
+    },
+  ],
 };
 const xml = `
 <json><a>1</a><b>2</b><c><d>123</d><d>465</d></c></json>

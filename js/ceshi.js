@@ -11,10 +11,10 @@ const bus = {
     this.list.push(func);
   },
   emit(...arg) {
-    this.list.forEach(item => {
+    this.list.forEach((item) => {
       item(...arg);
     });
-  }
+  },
 };
 window.on('click', () => {
   bus.emit('clicked');

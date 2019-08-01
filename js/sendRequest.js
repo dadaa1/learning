@@ -5,7 +5,7 @@
 // function sendRequest(url: string[],max: number,callback: ()=>void);
 
 function delay(url) {
-  return new Promise(res => {
+  return new Promise((res) => {
     setTimeout(() => {
       res(url);
     }, Math.random() * 4000);
@@ -21,7 +21,7 @@ function sendRequest(url, max, cb) {
   const result = [];
   let run = 0;
   function add(num) {
-    delay(url[num]).then(data => {
+    delay(url[num]).then((data) => {
       result.push(data);
       if (result.length === len) {
         cb(result);
@@ -33,11 +33,11 @@ function sendRequest(url, max, cb) {
       }
     });
   }
-  for (let i = 0; i < max; i++) {
+  for (let i = 0; i < max; i += 1) {
     add(i);
   }
 }
 
-sendRequest(['a', 'b', 'c', 'd', 'e', 'f'], 11, function(data) {
+sendRequest(['a', 'b', 'c', 'd', 'e', 'f'], 11, (data) => {
   console.log(data);
 });

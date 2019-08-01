@@ -21,8 +21,8 @@ const b = a.replace(/(?!^)(?=(\d{3})+$)/g, ',');
 console.log(b);
 
 const c = 'hello world';
-const d = c.replace(/(?!\s)\b./g, str => {
-  console.log(str + '1');
+const d = c.replace(/(?!\s)\b./g, (str) => {
+  console.log(`${str}1`);
   return str.toLocaleUpperCase();
 });
 console.log(d);
