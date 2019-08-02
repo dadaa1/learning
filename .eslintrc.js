@@ -18,6 +18,7 @@ module.exports = {
     'prefer-rest-params': 'off',
     'no-underscore-dangle': 'off',
     'class-methods-use-this': 'off',
-    // 'no-unused-vars': 'off',
+    'symbol-description': 'off',
+    'no-unused-vars': 'off',
   },
 };
