@@ -20,5 +20,6 @@ module.exports = {
     'class-methods-use-this': 'off',
     'symbol-description': 'off',
     'no-unused-vars': 'off',
+    'linebreak-style': 'off',
   },
 };
