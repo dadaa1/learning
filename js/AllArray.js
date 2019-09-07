@@ -1,4 +1,5 @@
 // 暂时不考虑重复的情况
+// 排列组合
 function all(arr) {
   const list = [];
   arr.forEach((item) => {

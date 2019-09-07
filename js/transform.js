@@ -1,3 +1,4 @@
+/* eslint-disable prefer-spread */
 // transform.js
 // 特定语法匹配替换
 // 说明：匹配字符串中形如 =g文字文字= 的语法，并将相应部分转化为对应的标签文字文字
@@ -44,13 +45,12 @@ console.log(b);
 // multiplyAdd(3, 4) // 返回 13
 
 function composeFunctions(...arg) {
-  return (...newFuncArg) =>
-    arg.reduce((str, item, index) => {
-      if (!index) {
-        return item.apply(null, newFuncArg);
-      }
-      return item.call(null, str);
-    }, '');
+  return (...newFuncArg) => arg.reduce((str, item, index) => {
+    if (!index) {
+      return item.apply(null, newFuncArg);
+    }
+    return item.call(null, str);
+  }, '');
 }
 
 const sss = x => x * x;
@@ -79,7 +79,7 @@ console.log(c);
 
 function machine(str) {
   function wait(time) {
-    return new Promise(res => {
+    return new Promise((res) => {
       setTimeout(() => {
         console.log(`wait ${time}s`);
         res();
@@ -102,18 +102,18 @@ function machine(str) {
         return promise;
       }, Promise.resolve());
     },
-    do: _str => {
+    do: (_str) => {
       arr.push({ key: 'do', value: `${str}${_str}` });
       return obj;
     },
-    wait: time => {
+    wait: (time) => {
       arr.push({ key: 'wait', value: time });
       return obj;
     },
-    waitFirst: time => {
+    waitFirst: (time) => {
       arr.unshift({ key: 'waitFirst', value: time });
       return obj;
-    }
+    },
   };
   return obj;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-extend-native */
 Array.prototype.map2 = function (func, that) {
   if (typeof func !== 'function') {
     throw new Error('参数是函数');

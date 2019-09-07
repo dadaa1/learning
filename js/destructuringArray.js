@@ -1,7 +1,7 @@
 // destructuringArray( [1,[2,4],3], "[a,[b],c]" );
 // result
 // { a:1, b:2, c:3 }
-
+// 基本上没有什么价值，只是为了题目的特殊代码
 function destructuringArray(valueArr, keystr) {
   const keysArr = keystr.split('').filter(item => /\w/g.test(item));
   const obj = {};

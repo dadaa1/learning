@@ -1,3 +1,4 @@
+/* eslint-disable no-extend-native */
 // 我想去实现一个bind的功能~
 // apply的参数是数组形式的~
 Function.prototype.bind = function () {

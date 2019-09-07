@@ -2,12 +2,12 @@
 const salesOffice = {};
 salesOffice.client = []; // 缓存列表，存放订阅者的回掉函数
 
-salesOffice.listen = function(fn) {
+salesOffice.listen = function (fn) {
   this.client.push(fn);
 };
 
-salesOffice.trigger = function() {
-  for (let i = 0, fn; (fn = this.client[i++]); ) {
+salesOffice.trigger = function () {
+  for (let i = 0, fn; (fn = this.client[i++]);) {
     fn.apply(this, arguments);
   }
 };
@@ -51,15 +51,13 @@ const hhh = {
   },
   fire() {
     const list = [...arguments];
-    const key = list[0];
+    const key = list.shift();
     if (!this.list[key]) {
       return;
     }
-    for (let i = 0, fn; (fn = this.list[key][i++]); ) {
-      const arg = list;
-      arg.shift();
-      fn.apply(this, arg);
-    }
+    this.list[key].forEach((item) => {
+      item.call(null, ...list);
+    });
   },
   unfire(key, fn) {
     const l = this.list[key].indexOf(fn);
@@ -67,7 +65,7 @@ const hhh = {
       return;
     }
     this.list[key].splice(l, 1);
-  }
+  },
 };
 function onLll(name) {
   console.log('我是lll触发的~', name);

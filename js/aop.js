@@ -1,3 +1,4 @@
+/* eslint-disable no-extend-native */
 Function.prototype.before = function (beforefn) {
   const self = this;
   return function () {
