@@ -87,3 +87,19 @@ hhh.fire('lll', 'dadaa');
 hhh.fire('hhh', 'hhhhh');
 
 // 把订阅的函数存起来，等到需要触发的时候触发，本质上还是回调函数。
+
+const EventEmitter = require('events');
+
+const emitter = new EventEmitter();
+const data = {
+  on: () => {},
+};
+data.on('data', (d) => {
+  emitter.emit('log', d);
+});
+
+(async () => {
+  await new Promise((res) => {
+    emitter.on('log', res);
+  });
+})();
