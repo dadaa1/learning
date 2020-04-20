@@ -14,5 +14,5 @@ const add = createCurry((...arg) => {
   console.log('w-w', arg);
 });
 console.log(add);
-console.log(add(1, 2, 3, 4));
+console.log(add(1, 2, 3, 4)());
 console.log(add(1)(2)(3)(4)());
